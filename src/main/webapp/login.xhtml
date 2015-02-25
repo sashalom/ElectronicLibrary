@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="templates/templateLogin.xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+		<h:form>
+
+			<h:panelGroup id="panel">
+				
+
+				<h:panelGrid  columns="2" cellpadding="3" cellspacing="3" styleClass="mybodyloginFields">
+					<h:outputLabel for="username" value="Username" />
+					<p:inputText id="username" value="#{login.username}"
+						required="true" label="Username">
+						<f:validateLength minimum="2" />
+					</p:inputText>
+
+					<h:outputLabel for="password" value="Password" />
+					<p:password id="password" required="true" value="#{login.password}"
+						feedback="false">
+						<f:validateLength minimum="5" />
+					</p:password>
+					<h:column />
+					
+
+				</h:panelGrid>
+				<p:commandButton update="panel" value="Login"
+					actionListener="#{login.login}" style="margin: 10px 0 10px 15px;" />
+				<p:commandButton value="Register" action="toRegistration" process="@this" style="margin: 10px 0 10px 15px;"/>
+				<p:commandButton value="Back" actionListener="#{login.goBack}" process="@this" style="margin: 10px 0 10px 15px;"/>
+				<p:messages />
+			</h:panelGroup>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

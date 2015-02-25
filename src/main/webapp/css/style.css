@@ -1,0 +1,190 @@
+.colWidth160px{
+	width: 160px;
+}
+
+.bookName{
+	display: block; 
+	font-size: 2.5em; 
+	font-weight: bold;
+}
+
+.bookAuthor{
+	display: block;
+	color: grey; 
+	font-size: 1.5em; 
+	font-weight: bold;
+}
+
+.booksList{
+	margin-top: 5px;
+}
+
+.booksList .ui-datatable table td{
+	border-width: 0px;
+    border-style: none;
+}
+
+.booksList .ui-datatable table div.bookFastViewDetails{
+	min-height: 100px;
+}
+
+.mybody{
+	width: 950px;
+	margin: 20px auto 0px;
+	border: 1px solid #DDD;
+	border-radius: 6px;
+	padding: 5px 5px 25px 5px;
+	min-height: 700px;
+}
+
+.myBodyLogin{
+	width: 400px;
+	margin: auto;
+	margin-top: 150px;
+	border: 1px solid #DDD;
+	border-radius: 6px;
+	padding: 5px 5px 25px 5px;
+}
+
+.contentBlockStyle{
+	border: 1px solid #DDD;
+	border-radius: 6px;
+	margin-top: 5px;
+	width: 925px;
+	position: relative;
+	padding: 10px 10px 25px;
+}
+
+.ui-menubar {
+    width: 935px;
+}
+
+.ui-menu {
+	padding: 5px;
+}
+
+
+.bookNameLink{
+	text-decoration: none;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.bookLabel{
+	font-weight: bold;
+	margin-right: 5px;
+	color: grey;
+}
+
+.welcomeBlock{
+	font-size: 20px;
+	text-align: center;
+}
+	
+.ui-widget-overlay {
+	background-image: none;
+	background-color: grey;
+	opacity: 0.3;
+}	
+	
+	
+.inputText600px{
+	width: 600px;
+	max-width: 600px;
+}
+
+.inputText300px{
+	width: 300px;
+}
+
+.orderBlock{
+	display: block;
+	float: right;
+	font-size: 12px;
+}
+
+.orderBlock .ui-selectonemenu .ui-selectonemenu-label{
+	overflow: inherit;
+}
+
+.orderBlock .ui-widget{
+	font-family: inherit;
+	font-size: 12px;
+}
+
+.ui-rating{
+	margin-bottom: 20px;
+}
+
+.commentsBlock .ui-widget-content{
+	background: none; 	
+	width: 920px;
+}
+
+.commentContent{
+	margin-bottom: 10px;
+	font-size: 16px;	
+}
+
+.commentsBlock .ui-tree .ui-tree-selectable .ui-treenode-label{
+	width: 80%;
+	background-color: rgb(240,240,240);
+}
+
+.commentsBlock .ui-widget-content .ui-state-default{
+	background: none; 	
+	border-width: 0px;
+    border-style: none;
+    margin-left: 5px;
+    color: grey;
+    font-weight: normal;
+    font-size: 10px;
+}
+
+.commentsBlock .ui-widget-content .ui-state-hover{
+	background-color: rgb(230,230,230); 	
+	border-width: 0px;
+    border-style: none;
+}
+
+.commentsBlock .ui-tree .ui-treenode{
+	border-left: 1px dotted rgba(2, 2, 2, 0.05);
+}
+
+.commentsHeader{
+	color: grey;
+	font-size: 24px;
+}
+
+.usernameComment{
+	color: rgb(0,54,81);
+	margin-right: 15px;
+}
+
+.dateComment{
+	font-size: 10px;
+}
+
+.ui-dialog .ui-dialog-title{
+	font-size: 1em;
+}
+
+
+.commentTextarea, .commentTextarea1{
+    width: 400px;
+    max-width: 400px;
+    min-width: 400px;
+}
+
+.commentTextarea1{
+	margin-top: 5px;
+}
+
+
+
+
+
+
+
+
+

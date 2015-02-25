@@ -1,0 +1,26 @@
+<h:form xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:p="http://primefaces.org/ui"
+	id="menubarForm">
+
+	<p:growl id="messages" />
+
+	<h:panelGroup styleClass="r-mainMenuBord">
+		<p:menubar styleClass="dropMainmenu">
+
+			<p:menuitem value="Home" url="/index.html" />
+			
+			<p:menuitem value="View books" url="/books/index.html" />
+			<p:menuitem value="Add book" url="/books/add.html" rendered="#{userData.adminUser}" />
+			<p:menuitem value="Users" url="/users" rendered="#{userData.adminUser}"/>
+
+			<p:menuitem value="Login" rendered="#{userData.currentLoggedUser == null}" url="/login"/>
+			<p:menuitem actionListener="#{login.logout}" value="Logout (#{userData.currentLoggedUser.username})" 
+				rendered="#{userData.currentLoggedUser != null}"
+				style="padding-left:20px; position:relative;" styleClass="logoutImg" />
+
+		</p:menubar>
+	</h:panelGroup>
+
+</h:form>

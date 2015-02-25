@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="templates/templateHome.xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+		<h:form id="mainForm">
+			
+			<f:metadata>
+				<f:event type="preRenderView" listener="#{userMng.preparePageLoadHandler}"/>
+			</f:metadata>
+			<h:panelGrid columns="2">
+				<h:outputText value="Username:"/> 
+				<p:inputText value="#{userMng.user.username}" styleClass="inputText300px"
+					required="true" requiredMessage="Username is required"/>
+				
+				<h:outputText value="Password:"/>
+				<p:password value="#{userMng.user.password}" id="password" styleClass="inputText300px"
+					required="true" requiredMessage="Password is required"/>
+				
+				<h:outputText value="Confirm password:"/>
+				<p:password value="#{userMng.user.confirmPassword}" styleClass="inputText300px"
+					required="true" requiredMessage="Confirm password">
+					<f:validator validatorId="passwordConfirmValidator"/>
+					<f:attribute name="passwordID" value="password"/>
+				</p:password>
+				
+				<h:outputText value="First name"/>
+				<p:inputText value="#{userMng.user.firstName}" styleClass="inputText300px"
+					required="true" requiredMessage="First name is required"/>
+				
+				<h:outputText value="Last name"/>
+				<p:inputText value="#{userMng.user.lastName}" styleClass="inputText300px"
+					required="true" requiredMessage="Last name is required"/>
+			
+			</h:panelGrid>
+			
+			<p:commandButton action="#{userMng.saveUser}" value="Register" update=":mainForm:messages"/>
+			<p:messages id="messages"/>
+			
+			
+			
+		</h:form>
+	</ui:define>
+</ui:composition>

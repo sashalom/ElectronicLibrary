@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="../templates/templateMain.xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+		<h:form id="mainForm">
+			<div class="usersList">
+				<p:dataTable id="table" value="#{usersMng.users}" var="user"
+					rows="20" rowKey="#{user.id}" lazy="true"
+					paginator="true" paginatorAlwaysVisible="true"
+					paginatorPosition="bottom"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="10,20,100">
+
+					<p:column headerText="username">
+						<h:outputText value="#{user.username}" />
+					</p:column>
+					
+					<p:column headerText="First name">
+						<h:outputText value="#{user.firstName}" />
+					</p:column>
+					
+					<p:column headerText="Last name">
+						<h:outputText value="#{user.lastName}" />
+					</p:column>
+					
+					<p:column headerText="Group">
+						<h:outputText value="#{user.group.group}" />
+					</p:column>
+					
+					<p:column headerText="Active">
+						<p:selectBooleanCheckbox value="#{user.active}" disabled="true"/>
+					</p:column>
+					
+					<p:column headerText="Confirmed">
+						<p:selectBooleanCheckbox value="#{user.confirmed}" disabled="true"/>
+					</p:column>
+					
+					<p:column >
+						<p:commandButton process="@this" value="Edit" actionListener="#{usersMng.showEditPopup(user)}" update=":editDialogueID" />
+					</p:column>
+					
+				</p:dataTable>
+			</div>
+		</h:form>
+	</ui:define>
+
+	<ui:define name="popup">
+		<p:dialog id="editDialogueID" widgetVar="editDialogue"
+			resizable="false" draggable="true" header="Edit user" closable="true"
+			modal="true">
+			<h:form>
+				<h:panelGrid columns="2">
+					<h:outputText value="Username:" />
+					<p:inputText value="#{usersMng.editUser.username}" disabled="true"/>
+					
+					<h:outputText value="Group:" />
+					<p:selectOneMenu value="#{usersMng.editUser.group}" converter="groupsConverter">
+						<f:selectItems value="#{groupsDictionary.groupsSI}"/>
+					</p:selectOneMenu>
+					
+
+					<h:outputText value="First name" />
+					<p:inputText value="#{usersMng.editUser.firstName}" required="true"
+						requiredMessage="First name is required" />
+
+					<h:outputText value="Last name" />
+					<p:inputText value="#{usersMng.editUser.lastName}" required="true"
+						requiredMessage="Last name is required" />
+						
+					<h:outputText value="Active" />
+					<p:selectBooleanCheckbox value="#{usersMng.editUser.active}"/>
+					
+					<h:outputText value="Confirmed" />
+					<p:selectBooleanCheckbox value="#{usersMng.editUser.confirmed}"/>
+
+				</h:panelGrid>
+				<p:commandButton value="Save" update="messages :mainForm" actionListener="#{usersMng.save}"/>
+				<p:commandButton value="Cancel" process="@this" oncomplete="PF('editDialogue').hide();"/>
+				<p:messages id="messages"/>
+			</h:form>
+
+		</p:dialog>
+	</ui:define>
+</ui:composition>

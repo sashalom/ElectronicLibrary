@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="../templates/templateMain.xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+		<f:metadata>
+			<f:event type="preRenderView"
+				listener="#{books.preparePageLoadHandler}" />
+		</f:metadata>
+		<h:form id="mainForm">
+			<h:panelGroup styleClass="orderBlock">
+				<h:outputText value="Ordering:" />
+				<p:selectOneMenu value="#{books.ordering}"
+					converter="booksOrderingConverter">
+					<p:ajax event="change" update=":mainForm" />
+					<f:selectItems value="#{books.orderItems}" />
+				</p:selectOneMenu>
+			</h:panelGroup>
+			<h:panelGroup style="display: block;">
+				<p:inputText value="#{books.searchField}" style="width: 450px;"/>
+				<p:commandButton value="Search" style="margin-left: 5px;" update=":mainForm" />
+			</h:panelGroup>
+
+			<div class="booksList">
+				<p:dataTable id="table" value="#{books.books}" var="book"
+					rows="#{books.booksTablePageSize}" rowKey="#{book.id}" lazy="true"
+					paginator="true" paginatorAlwaysVisible="true"
+					paginatorPosition="bottom"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15">
+
+					<p:column headerText="Books">
+						<h:panelGrid columns="2"
+							columnClasses="colWidth160px noBorder, noBorder">
+							<h:column>
+								<p:graphicImage value="#{books.getImageLink(book)}"
+									width="150px;" />
+							</h:column>
+							<h:column>
+								<div class="bookFastViewDetails">
+									<h:panelGrid>
+										<h:outputLink styleClass="bookNameLink"
+											value="#{books.getBookLink(book)}">
+											<h:outputText value="#{book.name}" />
+										</h:outputLink>
+										<h:column>
+											<h:outputText value="Author: " styleClass="bookLabel" />
+											<h:outputText value="#{book.authors}" />
+										</h:column>
+										<h:outputText value="#{book.description}" />
+										<!-- <h:outputLink value="#{books.getBookFileLink(book)}"
+											target="_blank">
+											<h:outputText value="#{book.fileName}" />
+										</h:outputLink> -->
+									</h:panelGrid>
+								</div>
+							</h:column>
+						</h:panelGrid>
+					</p:column>
+				</p:dataTable>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

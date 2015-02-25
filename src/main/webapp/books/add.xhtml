@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="../templates/templateMain.xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+			<h:form id="mainForm" enctype="multipart/form-data">
+				
+				<h:panelGrid columns="2">
+					<h:outputText value="Book name"/>
+					<p:inputText value="#{bookMng.book.name}" required="true" requiredMessage="Book name is required"
+						styleClass="inputText600px"/>
+					
+					<h:outputText value="Authors"/>
+					<p:inputText value="#{bookMng.book.authors}"
+						styleClass="inputText600px"/>
+					
+					<h:outputText value="Description"/>
+					<p:inputTextarea value="#{bookMng.book.description}"
+						styleClass="inputText600px" rows="5" autoResize="false"/>
+					
+					<h:outputText value="Book"/>
+					<h:column>
+						<p:fileUpload value="#{bookMng.bookFile}" mode="simple" skinSimple="true" required="true" 
+							validator="bookFileValidator" allowTypes="[\s\w\W\.-]+\.(odt|pdf|doc|rtf|txt)$"
+							sizeLimit="20971520" />
+					
+				</h:column>
+					
+					<h:outputText value="Image"/>
+					<h:column>
+						<p:fileUpload value="#{bookMng.imageFile}" mode="simple" skinSimple="true" required="true" 
+							allowTypes="[\s\w\W\.-]+\.(gif|jpe?g|png)$" validator="imageFileValidator">
+							<f:attribute name="maxWidth" value="800"/>
+							<f:attribute name="maxHeight" value="600"/>
+						</p:fileUpload>
+					</h:column>
+				
+				</h:panelGrid>
+				
+				<p:messages id="messages"/>
+				<p:commandButton value="Save" ajax="false" actionListener="#{bookMng.submitForm}" />
+				
+			</h:form>
+	</ui:define>
+</ui:composition>

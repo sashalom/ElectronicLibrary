@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="../templates/templateMain.xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+			<f:metadata>
+				<f:event type="preRenderView" listener="#{bookView.preparePageLoadHandler}"/>
+			</f:metadata>
+			<h:form id="mainForm">
+				<h:outputText value="#{bookView.book.name}" styleClass="bookName"/>
+				<h:outputText value="#{bookView.book.authors}" styleClass="bookAuthor"/>
+				
+				<h:panelGrid columns="2">
+					<h:column>
+						<p:graphicImage value="#{bookView.imageLink}" width="300px;" />
+					</h:column>
+					<h:column>
+						<h:panelGrid>
+							<h:outputText value="#{bookView.book.description}"/>
+							<h:column>
+								<h:outputText value="Author: " />
+								<h:outputText value="#{bookView.book.authors}" />
+							</h:column>
+						</h:panelGrid>
+					</h:column>
+					<h:column>
+					<h:panelGroup rendered="#{userData.currentLoggedUser != null}">
+						<h:outputText value="Download: " />
+						<h:outputLink value="#{bookView.bookFileLink}" target="_blank">
+							<h:outputText value="#{bookView.book.fileName}" />
+						</h:outputLink>
+					</h:panelGroup>
+				</h:column>
+
+				
+				</h:panelGrid>
+				<p:rating value="#{bookView.book.rate}" stars="5" cancel="false" readonly="#{!bookView.canAssignRating}">
+					<p:ajax event="rate" listener="#{bookView.onrate}" process="@this" update="@this" />
+				</p:rating>
+				
+				<p:messages id="messages"/>
+
+			<h:panelGroup styleClass="commentsBlock" id="commentsBlockID">
+				<h:outputText value="Comments (#{bookView.book.comments.size()})"
+					styleClass="commentsHeader" />
+				<p:tree value="#{bookView.comments}" var="node">
+					<p:treeNode>
+						<h:panelGrid styleClass="commentContent">
+							<h:column>
+								<h:outputText value="#{node.user.username}" styleClass="usernameComment" />
+								<h:outputText value="#{node.date}" styleClass="dateComment">
+								<f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+								</h:outputText>
+								<p:commandButton value="ansver" process="@this" actionListener="#{bookView.ansver(node)}" 
+									update=":answerDialogueID" rendered="#{userData.currentLoggedUser != null}" />
+							</h:column>
+							<h:outputText value="#{node.comment}" />
+						</h:panelGrid>
+					</p:treeNode>
+				</p:tree>
+				<h:panelGroup rendered="#{userData.currentLoggedUser != null}">
+					<h:panelGrid>
+						<h:outputText value="Add comment:" styleClass="commentsHeader" />
+						<p:inputTextarea value="#{bookView.commentText}" required="true"
+							requiredMessage="Comment can't be empty" id="commentText"
+							styleClass="commentTextarea1" rows="5" autoResize="false" />
+						<p:message for=":mainForm:commentText" />
+					</h:panelGrid>
+					<p:commandButton value="Save" process=":mainForm:commentsBlockID"
+						actionListener="#{bookView.addNewComment}"
+						update=":mainForm:commentsBlockID" />
+				</h:panelGroup>
+			</h:panelGroup>
+		</h:form>
+	</ui:define>
+	
+	<ui:define name="popup">
+		<p:dialog id="answerDialogueID" widgetVar="answerDialogue"
+			resizable="false" draggable="true" header="Comment" closable="true"
+			modal="true">
+			<h:form>
+				<h:panelGrid columns="2">
+<!-- 					<h:outputText value="Your comment:" /> -->
+					<p:inputTextarea value="#{bookView.newComment.comment}" required="true" 
+						styleClass="commentTextarea" rows="5" autoResize="false"/>
+				</h:panelGrid>
+				<div align="center" >
+					<p:commandButton value="Save"
+						actionListener="#{bookView.addAnsverComment}"
+						update=":mainForm:commentsBlockID" />
+					<p:commandButton value="Cancel" process="@this" style="margin-left: 5px;"
+						oncomplete="PF('answerDialogue').hide();" />
+				</div>
+			</h:form>
+		</p:dialog>
+
+	</ui:define>
+</ui:composition>
