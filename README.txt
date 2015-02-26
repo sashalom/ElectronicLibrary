@@ -1,7 +1,9 @@
-file sql.sql contains SQL's to prepare DB
+Для підготовки БД є присутній файл sql.sql
 
-in folder testResources there are files that test data linked for
+Мною були підготовані тестові дані, для коректної роботи з ними я підготував папку з ресурсами testResources
+вміст даного каталогу потрібно розмістити в себе в файловій системі на змінити відповідно налаштування в файлі in el.properties
+налаштування доступу до БД містяться в файлі jsf2-context.xml таких файлів  в проекті є 2 один з них знаходиться за шляхом: webapp/WEB-INF/jsf2-context.xml а інший в пакеті ресурсів
 
-before start to run the project change configuration in el.properties file and DB configuration in jsf2-context.xml
+також потрібно змінити web.xml - тут міститься параметр uploadDirectory він відповідає за місце зберігання тимчасових файлів які ми завантажуватимемо на сервер
 
-also need to change web.xml - here we have parameter uploadDirectory - it's folder to store temporary files of fileUploader
+для запуску проекту я використовував Tomcat 7, також я добавив в build path - Server Runtime
