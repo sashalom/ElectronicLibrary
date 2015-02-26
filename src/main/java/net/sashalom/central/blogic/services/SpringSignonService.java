@@ -1,7 +1,5 @@
 package net.sashalom.central.blogic.services;
 
-import javax.annotation.Resource;
-
 import net.sashalom.central.model.User;
 
 import org.apache.log4j.Logger;
@@ -32,7 +30,7 @@ public class SpringSignonService implements UserDetailsService {
 		return sessionFactory.getCurrentSession();
 	}
 
-	@Resource
+	@Autowired
 	private ApplicationContext ctx;
 	
 	public UserDetails loadUserByUsername(String username)
