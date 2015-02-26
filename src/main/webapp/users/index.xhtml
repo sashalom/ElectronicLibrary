@@ -27,20 +27,20 @@
 						<h:outputText value="#{user.lastName}" />
 					</p:column>
 					
-					<p:column headerText="Group">
+					<p:column headerText="Group" styleClass="alignCenter" style="width: 70px;">
 						<h:outputText value="#{user.group.group}" />
 					</p:column>
 					
-					<p:column headerText="Active">
+					<p:column headerText="Active" styleClass="alignCenter" style="width: 70px;">
 						<p:selectBooleanCheckbox value="#{user.active}" disabled="true"/>
 					</p:column>
 					
-					<p:column headerText="Confirmed">
+					<p:column headerText="Confirmed" styleClass="alignCenter" style="width: 90px;">
 						<p:selectBooleanCheckbox value="#{user.confirmed}" disabled="true"/>
 					</p:column>
 					
-					<p:column >
-						<p:commandButton process="@this" value="Edit" actionListener="#{usersMng.showEditPopup(user)}" update=":editDialogueID" />
+					<p:column  styleClass="alignCenter" style="width: 40px;">
+						<p:commandButton process="@this" icon="icon icon-edit" actionListener="#{usersMng.showEditPopup(user)}" update=":editDialogueID" />
 					</p:column>
 					
 				</p:dataTable>
@@ -49,37 +49,41 @@
 	</ui:define>
 
 	<ui:define name="popup">
-		<p:dialog id="editDialogueID" widgetVar="editDialogue"
+		<p:dialog id="editDialogueID" widgetVar="editDialogue" 
 			resizable="false" draggable="true" header="Edit user" closable="true"
 			modal="true">
 			<h:form>
-				<h:panelGrid columns="2">
+				<h:panelGrid columns="2" >
 					<h:outputText value="Username:" />
-					<p:inputText value="#{usersMng.editUser.username}" disabled="true"/>
+					<p:inputText value="#{usersMng.editUser.username}" disabled="true" styleClass="inputText300px"/>
 					
 					<h:outputText value="Group:" />
-					<p:selectOneMenu value="#{usersMng.editUser.group}" converter="groupsConverter">
+					<p:selectOneMenu value="#{usersMng.editUser.group}" converter="groupsConverter" style="width: 307px;">
 						<f:selectItems value="#{groupsDictionary.groupsSI}"/>
 					</p:selectOneMenu>
 					
 
-					<h:outputText value="First name" />
+					<h:outputText value="First name:" />
 					<p:inputText value="#{usersMng.editUser.firstName}" required="true"
-						requiredMessage="First name is required" />
+						requiredMessage="First name is required" styleClass="inputText300px" />
 
-					<h:outputText value="Last name" />
+					<h:outputText value="Last name:" />
 					<p:inputText value="#{usersMng.editUser.lastName}" required="true"
-						requiredMessage="Last name is required" />
+						requiredMessage="Last name is required" styleClass="inputText300px" />
 						
-					<h:outputText value="Active" />
+					<h:outputText value="Active:" />
 					<p:selectBooleanCheckbox value="#{usersMng.editUser.active}"/>
 					
-					<h:outputText value="Confirmed" />
+					<h:outputText value="Confirmed:" />
 					<p:selectBooleanCheckbox value="#{usersMng.editUser.confirmed}"/>
 
 				</h:panelGrid>
-				<p:commandButton value="Save" update="messages :mainForm" actionListener="#{usersMng.save}"/>
-				<p:commandButton value="Cancel" process="@this" oncomplete="PF('editDialogue').hide();"/>
+				<div align="center">
+					<p:commandButton value="Save" update="messages :mainForm"
+						actionListener="#{usersMng.save}" icon="icon icon-save" />
+					<p:commandButton value="Cancel" process="@this"
+						oncomplete="PF('editDialogue').hide();" icon="icon icon-cancel" />
+				</div>
 				<p:messages id="messages"/>
 			</h:form>
 

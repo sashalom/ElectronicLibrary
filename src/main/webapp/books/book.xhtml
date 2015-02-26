@@ -70,7 +70,7 @@
 						<p:message for=":mainForm:commentText" />
 					</h:panelGrid>
 					<p:commandButton value="Save" process=":mainForm:commentsBlockID"
-						actionListener="#{bookView.addNewComment}"
+						actionListener="#{bookView.addNewComment}" icon="icon icon-save"
 						update=":mainForm:commentsBlockID" />
 				</h:panelGroup>
 			</h:panelGroup>
@@ -88,11 +88,11 @@
 						styleClass="commentTextarea" rows="5" autoResize="false"/>
 				</h:panelGrid>
 				<div align="center" >
-					<p:commandButton value="Save"
+					<p:commandButton value="Save" icon="icon icon-save"
 						actionListener="#{bookView.addAnsverComment}"
 						update=":mainForm:commentsBlockID" />
 					<p:commandButton value="Cancel" process="@this" style="margin-left: 5px;"
-						oncomplete="PF('answerDialogue').hide();" />
+						oncomplete="PF('answerDialogue').hide();" icon="icon icon-cancel" />
 				</div>
 			</h:form>
 		</p:dialog>

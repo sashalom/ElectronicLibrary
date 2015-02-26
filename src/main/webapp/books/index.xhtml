@@ -21,7 +21,7 @@
 			</h:panelGroup>
 			<h:panelGroup style="display: block;">
 				<p:inputText value="#{books.searchField}" style="width: 450px;"/>
-				<p:commandButton value="Search" style="margin-left: 5px;" update=":mainForm" />
+				<p:commandButton  style="margin-left: 5px;" update=":mainForm" icon="icon icon-search" />
 			</h:panelGroup>
 
 			<div class="booksList">
@@ -51,10 +51,6 @@
 											<h:outputText value="#{book.authors}" />
 										</h:column>
 										<h:outputText value="#{book.description}" />
-										<!-- <h:outputLink value="#{books.getBookFileLink(book)}"
-											target="_blank">
-											<h:outputText value="#{book.fileName}" />
-										</h:outputLink> -->
 									</h:panelGrid>
 								</div>
 							</h:column>

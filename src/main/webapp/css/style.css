@@ -180,11 +180,44 @@
 	margin-top: 5px;
 }
 
+.alignCenter{
+	text-align: center;
+}
 
 
+.ui-state-default .icon{
+	background-image:url(../images/icons.png);
+	width:16px;
+	height:16px;
+}
 
+.ui-state-disabled .icon {
+	background-image:url(../images/iconsDisabled.png);
+}
 
+.ui-state-active .icon {
+	opacity:0.7;
+}
 
+.icon-cancel{
+	background-position:-32px 0;
+}
+
+.icon-save{
+	background-position:-48px -16px;
+}
+
+.icon-search{
+	background-position:0 0;
+}
+
+.icon-download{
+	background-position:0 -64px;
+}
+
+.icon-edit{
+	background-position:-80px -32px;
+}
 
 
 
